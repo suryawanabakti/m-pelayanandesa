@@ -32,6 +32,8 @@ const LoginScreen: React.FC = () => {
     try {
       await login(email, password);
     } catch (error: any) {
+      alert(error.code);
+      console.log(error.code);
       setErrors(error.response?.data?.errors);
       alert(error.response?.data?.message);
     }

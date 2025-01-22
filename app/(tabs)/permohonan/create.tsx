@@ -39,10 +39,10 @@ const Create = () => {
   const handlePickPdf = async () => {
     try {
       const result = await DocumentPicker.getDocumentAsync({
-        type: "application/pdf",
+        type: "*/*", // Semua tipe file
       });
-      console.log("RESULT", result);
-      setPdfFile(result); // Menyimpan dokumen yang dipilih
+      console.log("RESULT", result.assets);
+      setPdfFile(result.assets ? result.assets[0] : null); // Menyimpan dokumen yang dipilih
     } catch (error) {
       console.error("Error picking file:", error);
     }
@@ -67,15 +67,16 @@ const Create = () => {
           name: pdfFile.name,
           type: "application/pdf",
         } as any);
+        console.log(formData);
       }
 
-      await axios.post(BACKEND_URL + "/permohonan", formData, {
+      const res = await axios.post(BACKEND_URL + "/permohonan", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-
       alert("Berhasil tambah permohonan");
+      console.log("INIRESPON", res);
       setDate(new Date());
       setText("");
       setServiceType("");

@@ -5,21 +5,30 @@ import { router } from "expo-router";
 import { useAuth } from "../context/AuthContext";
 
 const Profile: React.FC = () => {
-  const { user }: { user: any } = useAuth(); // Explicitly typing `useAuth`
+  const { user, logout }: any = useAuth(); // Explicitly typing `useAuth`
 
+  const handleLogout = async () => {
+    try {
+      alert("Keluar");
+      await logout();
+      router.replace("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <View style={styles.container}>
       {/* Foto Profil */}
       <Image
         source={{
-          uri: `https://ui-avatars.com/api/?name=${decodeURI(user.name)}`,
+          uri: `https://ui-avatars.com/api/?name=${decodeURI(user?.name)}`,
         }}
         style={styles.profileImage}
       />
 
       {/* Nama dan Email */}
-      <ThemedText style={styles.name}>{user.name}</ThemedText>
-      <Text style={styles.email}>{user.email}</Text>
+      <ThemedText style={styles.name}>{user?.name}</ThemedText>
+      <Text style={styles.email}>{user?.email}</Text>
 
       {/* Navigasi */}
       <View style={styles.buttonContainer}>
@@ -39,7 +48,7 @@ const Profile: React.FC = () => {
 
         <TouchableOpacity
           style={[styles.button, styles.logoutButton]}
-          onPress={() => router.push("/")}
+          onPress={handleLogout}
         >
           <Text style={styles.buttonText}>Keluar</Text>
         </TouchableOpacity>

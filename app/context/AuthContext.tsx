@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { BACKEND_URL } from "@/config";
+import { router } from "expo-router";
 
 interface User {
   id: number;
@@ -25,7 +27,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const url = "http://pelayanandesa.test/api/v1";
+  const url = BACKEND_URL;
   const login = async (email: string, password: string) => {
     try {
       const response = await axios.post(url + "/login", {
@@ -73,6 +75,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       console.error("Logout error", error);
     }
     setLoading(false);
+    router.reload();
   };
 
   const checkUser = async () => {

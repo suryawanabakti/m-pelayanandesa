@@ -16,7 +16,9 @@ export default function HomeScreen() {
       headerBackgroundColor={{ light: "#d9fdd3", dark: "#d9fdd3" }}
       headerImage={
         <ImageBackground
-          source={{ uri: "https://example.com/village-background.jpg" }} // Replace with a rural-themed image URL
+          source={{
+            uri: "https://img.freepik.com/premium-photo/beautiful-view-indian-village-background_459244-335.jpg",
+          }} // Replace with a rural-themed image URL
           style={styles.headerImageContainer}
         >
           <Text style={styles.headerText}>Selamat Datang</Text>
@@ -27,24 +29,12 @@ export default function HomeScreen() {
       <ThemedView style={styles.titleContainer}>
         <View style={styles.cardRow}>
           <View style={styles.card}>
-            <Icon
-              size={43}
-              name="file-text"
-              color={"#4caf50"}
-              style={styles.cardImage}
-            />
             <View style={styles.cardContent}>
               <Text style={styles.cardTitle}>Permohonan</Text>
               <Text style={styles.cardDescription}>Diterima: 3</Text>
             </View>
           </View>
           <View style={styles.card}>
-            <Icon
-              size={43}
-              name="file-text"
-              color={"#ffeb3b"}
-              style={styles.cardImage}
-            />
             <View style={styles.cardContent}>
               <Text style={styles.cardTitle}>Permohonan</Text>
               <Text style={styles.cardDescription}>Diproses: 3</Text>
@@ -118,7 +108,7 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   headerImageContainer: {
-    height: 240,
+    height: 250,
     justifyContent: "center",
     alignItems: "center",
   },
