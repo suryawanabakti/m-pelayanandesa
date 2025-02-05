@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import { router } from "expo-router";
 import { useAuth } from "../context/AuthContext";
-
+// Test
 const Profile: React.FC = () => {
   const { user, logout }: any = useAuth(); // Explicitly typing `useAuth`
 
